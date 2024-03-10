@@ -1,7 +1,11 @@
 import React from "react";
-
+import Navbar from "./components/Navbar";
 const App = () => {
-  return <div>Welcome to MUI</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
 
 export default App;
