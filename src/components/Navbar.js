@@ -9,19 +9,21 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { mainNavbarItems } from "./consts/navbarItems";
 import { navbarStyles } from "./styles.js";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Drawer sx={navbarStyles.drawer} variant="permanent" anchor="left">
         <Toolbar />
         <Divider />
         <List>
-          {mainNavbarItems.map((text, index) => (
-            <ListItem key={text.id} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={navbarStyles.icons}>{text.icon}</ListItemIcon>
-                <ListItemText sx={navbarStyles.text} primary={text.label} />
+          {mainNavbarItems.map((item, index) => (
+            <ListItem key={item.id} disablePadding>
+              <ListItemButton onClick={() => navigate(item.route)}>
+                <ListItemIcon sx={navbarStyles.icons}>{item.icon}</ListItemIcon>
+                <ListItemText sx={navbarStyles.text} primary={item.label} />
               </ListItemButton>
             </ListItem>
           ))}
