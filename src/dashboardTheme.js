@@ -7,18 +7,13 @@ export const dashboardTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
+    h1: {
+      fontSize: "1.6rem",
+      fontWeight: 600,
+      color: "#fff",
+      letterSpacing: "0.5px",
+      textTransform: "capitalize",
+    },
   },
   spacing: [4, 8, 12, 16, 20],
 
@@ -28,10 +23,11 @@ export const dashboardTheme = createTheme({
       styleOverrides: {
         // Name of the slot
         root: {
-          fontWeight: 600,
           fontSize: "0.875rem",
-          textTransform: "capitalize",
-          borderRadius: 2.5,
+          fontWeight: 600,
+          borderRadius: 8.5,
+          textTransform: "none",
+
           "&.MuiButton-contained": {
             backgroundColor: "009be5",
             "&:hover": {
@@ -40,11 +36,18 @@ export const dashboardTheme = createTheme({
           },
           "&.MuiButton-outlined": {
             color: "#fff",
-            borderColor: "#fff",
+            borderColor: "rgba(255, 255, 255, 0.7)",
             "&:hover": {
-              backgroundColor: "transparent",
+              backgroundColor: "rgba(255, 255, 255, 0.04)",
             },
           },
+        },
+      },
+    },
+    MuiSVGIcon: {
+      styleOverrides: {
+        root: {
+          fontSize: "1.75rem",
         },
       },
     },
