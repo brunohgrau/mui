@@ -2,7 +2,7 @@ import React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-const BasicMenu = ({ anchorEl, open, handleClose }) => {
+const BasicMenu = ({ anchorEl, open, handleClose, menuItems }) => {
   return (
     <>
       <Menu
@@ -10,13 +10,12 @@ const BasicMenu = ({ anchorEl, open, handleClose }) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {menuItems.map((item) => (
+          <MenuItem key={item} onClick={handleClose}>
+            {item.label}
+          </MenuItem>
+        ))}
       </Menu>
     </>
   );

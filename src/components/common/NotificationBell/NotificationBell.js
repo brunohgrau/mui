@@ -19,20 +19,39 @@ const NotificationBell = ({ iconColor, badgeContent }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const notifications = [
+    {
+      id: "1",
+      label: "Notifications 1",
+    },
+    {
+      id: "2",
+      label: "Notifications 2",
+    },
+  ];
+
   return (
     <>
-      <Tooltip title={badgeContent ? newNotifications : noNotifications}>
+      <Tooltip
+        title={notifications.length ? newNotifications : noNotifications}
+      >
         <IconButton
           color={iconColor}
-          onClick={badgeContent ? handleOpen : null}
+          onClick={notifications.length ? handleOpen : null}
           anchorEl={anchorEl}
         >
-          <Badge color="primary" badgeContent={badgeContent}>
+          <Badge color="error" badgeContent={notifications.length}>
             <NotificationsIcon />
           </Badge>
         </IconButton>
       </Tooltip>
-      <BasicMenu open={open} anchorEl={anchorEl} handleClose={handleClose} />
+      <BasicMenu
+        open={open}
+        anchorEl={anchorEl}
+        handleClose={handleClose}
+        menuItems={notifications}
+      />
     </>
   );
 };
