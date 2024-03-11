@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 
 const BasicCard = ({ header, content }) => {
   const cardStyles = {
-    width: "1050px",
+    width: "1000px",
     position: "absolute",
     left: "50%",
     transform: "translateX(-50%)",
@@ -13,7 +13,7 @@ const BasicCard = ({ header, content }) => {
   };
 
   return (
-    <Card>
+    <Card sx={cardStyles}>
       {header}
       <CardContent>{content}</CardContent>
     </Card>
