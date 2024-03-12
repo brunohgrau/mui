@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BasicModal from "../common/BasicModal/BasicModal";
 import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -6,14 +6,21 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const NewUserModal = ({ open, onClose, content }) => {
+const defaultInputValues = {
+  userId: "",
+  email: "",
+  phoneNumber: "",
+};
+
+const NewUserModal = ({ open, onClose, addNewUser }) => {
+  const [values, setValues] = useState(defaultInputValues);
   const modalStyles = {
     inputFields: {
       display: "flex",
       flexDirection: "column",
       marginTop: "20px",
       marginBottom: "15px",
-      "MuiInput-root": {
+      ".MuiFormControl-root": {
         marginBottom: "20px",
       },
     },
@@ -41,8 +48,18 @@ const NewUserModal = ({ open, onClose, content }) => {
   });
 
   const addUser = (data) => {
-    console.log(data);
+    addNewUser(data);
   };
+
+  const handleChange = (value) => {
+    setValues(value);
+    console.log(value);
+  };
+
+  // Clear Input Fields
+  useEffect(() => {
+    if (open) setValues(defaultInputValues);
+  }, [open]);
 
   const getContent = () => (
     <Box sx={modalStyles.inputFields}>
@@ -54,6 +71,10 @@ const NewUserModal = ({ open, onClose, content }) => {
         {...register("userId")}
         error={errors.userId ? true : false}
         helperText={errors.userId?.message}
+        value={values.userId}
+        onChange={(event) =>
+          handleChange({ ...values, userId: event.target.value })
+        }
       />
       <TextField
         placeholder="Email"
@@ -63,6 +84,10 @@ const NewUserModal = ({ open, onClose, content }) => {
         {...register("email")}
         error={errors.email ? true : false}
         helperText={errors.email?.message}
+        value={values.email}
+        onChange={(event) =>
+          handleChange({ ...values, email: event.target.value })
+        }
       />
       <TextField
         placeholder="Phone Number"
@@ -72,6 +97,10 @@ const NewUserModal = ({ open, onClose, content }) => {
         {...register("phoneNumber")}
         error={errors.phoneNumber ? true : false}
         helperText={errors.phoneNumber?.message}
+        value={values.phoneNumber}
+        onChange={(event) =>
+          handleChange({ ...values, phoneNumber: event.target.value })
+        }
       />
     </Box>
   );
